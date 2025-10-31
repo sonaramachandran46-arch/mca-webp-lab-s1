@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<script type="text/javascript">
+function check() {
+    var name = document.getElementById('name').value.trim();
+    var user = document.getElementById('user').value.trim();
+    var email = document.getElementById('mail').value.trim();
+    var pswd = document.getElementById('pswd').value;
+    var cpswd = document.getElementById('cpswd').value;
+
+    // Check empty fields
+    if (name === "") {
+        alert("Please enter your name");
+        return false;
+    }
+    if (user === "") {
+        alert("Please enter a username");
+        return false;
+    }
+
+    // Improved email validation regex
+    var emailFilter = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailFilter.test(email)) {
+        alert("Please enter a valid email address (e.g. user@example.com)");
+        return false;
+    }
+
+    // Password validation
+    if (pswd === "") {
+        alert("Please enter your password");
+        return false;
+    }
+
+    // Password strength: at least 8 chars, one uppercase, one lowercase, one digit, one special char
+    var pswdFilter = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&_])[A-Za-z\d@$!%*?#&_]{8,}$/;
+    if (!pswdFilter.test(pswd)) {
+        alert("Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.");
+        return false;
+    }
+
+    if (cpswd === "") {
+        alert("Please confirm your password");
+        return false;
+    }
+
+    if (pswd !== cpswd) {
+        alert("Passwords do not match");
+        return false;
+    }
+
+    alert("Registration successful!");
+    return true;
+}
+</script>
+</head>
+<body>
+<center>
+    <form onsubmit="return check()">
+        <u><h1>REGISTRATION</h1></u>
+        Name: <input type="text" id="name" name="name"><br><br>
+        Username: <input type="text" id="user" name="user"><br><br>
+        Email: <input type="text" id="mail" name="mail"><br><br>
+        Password: <input type="password" id="pswd" name="pswd"><br><br>
+        Confirm Password: <input type="password" id="cpswd" name="cpswd"><br><br>
+        <input type="submit" id="submit" value="Submit">&emsp;
+        <input type="reset" value="Reset">
+    </form>
+</center>
+</body>
+</html>
+
